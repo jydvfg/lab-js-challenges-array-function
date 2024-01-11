@@ -101,7 +101,6 @@ function uniquifyArray(array) {
   array.forEach((element) => {
     if (!uniquifiedArray.includes(element)) uniquifiedArray.push(element);
   });
-  console.log(uniquifiedArray);
   return uniquifiedArray;
 }
 uniquifyArray(duplicateWords);
@@ -172,4 +171,34 @@ const matrix = [
   ],
 ];
 
-function greatestProduct() {}
+function greatestProduct(array) {
+  let greatest = 0;
+  let sum = 0;
+  for (let mainIndex = 0; mainIndex < array.length; mainIndex++) {
+    for (let subIndex = 0; subIndex < array[mainIndex].length - 3; subIndex++) {
+      sum =
+        array[mainIndex][subIndex] *
+        array[mainIndex][subIndex + 1] *
+        array[mainIndex][subIndex + 2] *
+        array[mainIndex][subIndex + 3];
+      if (sum > greatest) {
+        greatest = sum;
+      }
+    }
+  }
+  console.log(greatest);
+  return greatest;
+}
+
+greatestProduct(matrix);
+
+/*for each row in matrix:
+for i from 0 to length(row) - 4:
+    product = row[i] * row[i+1] * row[i+2] * row[i+3]
+    maxProduct = max(maxProduct, product)
+
+// Check vertically
+for i from 0 to length(matrix[0]) - 1:
+for j from 0 to length(matrix) - 4:
+    product = matrix[j][i] * matrix[j+1][i] * matrix[j+2][i] * matrix[j+3][i]
+    maxProduct = max(maxProduct, product)*/
