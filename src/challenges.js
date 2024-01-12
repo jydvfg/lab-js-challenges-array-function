@@ -173,32 +173,33 @@ const matrix = [
 
 function greatestProduct(array) {
   let greatest = 0;
-  let sum = 0;
+  let result = 0;
   for (let mainIndex = 0; mainIndex < array.length; mainIndex++) {
     for (let subIndex = 0; subIndex < array[mainIndex].length - 3; subIndex++) {
-      sum =
+      result =
         array[mainIndex][subIndex] *
         array[mainIndex][subIndex + 1] *
         array[mainIndex][subIndex + 2] *
         array[mainIndex][subIndex + 3];
-      if (sum > greatest) {
-        greatest = sum;
+      if (result > greatest) {
+        greatest = result;
       }
     }
   }
-  console.log(greatest);
-  return greatest;
+  for (let column = 0; column < array[0].length; column++) {
+    for (let j = 0; j < array.length - 3; j++) {
+      result =
+        array[column][j] *
+        array[column + 1][j] *
+        array[column + 2][j] *
+        array[column + 4][j];
+      if (result > greatest) {
+        greatest = result;
+      }
+    }
+    console.log(greatest);
+    return greatest;
+  }
 }
 
 greatestProduct(matrix);
-
-/*for each row in matrix:
-for i from 0 to length(row) - 4:
-    product = row[i] * row[i+1] * row[i+2] * row[i+3]
-    maxProduct = max(maxProduct, product)
-
-// Check vertically
-for i from 0 to length(matrix[0]) - 1:
-for j from 0 to length(matrix) - 4:
-    product = matrix[j][i] * matrix[j+1][i] * matrix[j+2][i] * matrix[j+3][i]
-    maxProduct = max(maxProduct, product)*/
